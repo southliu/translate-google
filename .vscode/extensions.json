@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "streetsidesoftware.code-spell-checker",
-    "bradlc.vscode-tailwindcss"
+    "streetsidesoftware.code-spell-checker"
   ]
 }
