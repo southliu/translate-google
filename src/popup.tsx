@@ -1,13 +1,39 @@
 import { useState } from 'react'
 import './popup.css'
 
-const tabs = [
-  { label: '英语', key: 'eng' },
+type IType = 'en' | 'zh'
+
+interface ITabs {
+  label: string;
+  key: IType;
+}
+
+const tabs: ITabs[] = [
+  { label: '英语', key: 'en' },
   { label: '中文(简体)', key: 'zh' }
 ]
 
 function IndexPopup() {
-  const [active, setActive] = useState('eng') // 当前选中
+  const [active, setActive] = useState<IType>('en') // 当前选中
+
+  /**
+   * 切换语言
+   * @param type - 类型
+   */
+  const onChangeLang = (type: IType) => {
+    switch (type) {
+      case 'en':
+        break
+
+      case 'zh':
+        break
+
+      default:
+        break
+    }
+
+    setActive(type)
+  }
 
   /** 关闭 */
   const onClose = () => {
@@ -24,7 +50,7 @@ function IndexPopup() {
               <div
                 className={`item ${active === item.key ? 'active' : ''}`}
                 key={item.key}
-                onClick={() => setActive(item.key)}
+                onClick={() => onChangeLang(item.key)}
               >
                 { item.label }
               </div>

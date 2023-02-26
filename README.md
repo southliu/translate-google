@@ -1,6 +1,6 @@
 ## ✨ 简介
 
-页面翻译谷歌插件
+页面翻译谷歌插件。
 
 ## 🐱‍💻 项目使用
 
@@ -35,3 +35,7 @@ npm run dev
 ```
 npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
+
+## 📝 文档
+
+[谷歌文档](https://developer.chrome.com/docs/extensions/reference/)

@@ -5,13 +5,13 @@ html, body {
 
 .header {
   display: flex;
-  padding: 8px 10px 8px 15px;
+  padding: 8px 15px;
   box-sizing: border-box;
 }
 
 .translate-box {
   display: flex;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid #e2e2e2;
 }
 
 .item {
@@ -45,5 +45,6 @@ html, body {
 .footer {
   width: 100%;
   padding: 10px 20px;
-  background-color: #ececec;
+  background-color: #f1f1f1;
+  border-top: 1px solid #dbdbdb;
 }
