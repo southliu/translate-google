@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './popup.css'
+import './index.css'
 
 type IType = 'en' | 'zh'
 
@@ -16,6 +16,17 @@ const tabs: ITabs[] = [
 function IndexPopup() {
   const [active, setActive] = useState<IType>('en') // 当前选中
 
+  /** 翻译当前页面 */
+  const translatePage = async () => {
+    chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+      if (tabs.length) {
+        const { id } = tabs[0]
+        console.log('id:', id)
+        chrome.tabs.sendMessage(id, { type: 'tip', msg: '开发中...' })
+      }
+    })
+  }
+
   /**
    * 切换语言
    * @param type - 类型
@@ -26,10 +37,11 @@ function IndexPopup() {
         break
 
       case 'zh':
+        translatePage()
         break
 
       default:
-        break
+        break 
     }
 
     setActive(type)
@@ -37,7 +49,6 @@ function IndexPopup() {
 
   /** 关闭 */
   const onClose = () => {
-    // chrome
     console.log('关闭')
   }
 
