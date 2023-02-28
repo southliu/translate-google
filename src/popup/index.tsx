@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import './index.css'
+import '../../assets/style.css'
 
 type IType = 'en' | 'zh'
 
-interface ITabs {
+interface ITabs { 
   label: string;
   key: IType;
 }
@@ -18,11 +18,22 @@ function IndexPopup() {
 
   /** 翻译当前页面 */
   const translatePage = async () => {
-    chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    chrome.tabs.query({ currentWindow: true, active: true }, async (tabs) => {
       if (tabs.length) {
         const { id } = tabs[0]
         console.log('id:', id)
-        chrome.tabs.sendMessage(id, { type: 'tip', msg: '开发中...' })
+        try {
+          const data = await chrome.runtime.sendMessage({
+            type: 'msg',
+            msg: '开发中...'
+          }, callback => {
+            console.log('callback:', callback)
+          })
+          console.log('data:', data)
+
+        } catch(err) {
+          console.log('信息发送失败：', err)
+        }
       }
     })
   }
@@ -48,18 +59,38 @@ function IndexPopup() {
   }
 
   /** 关闭 */
-  const onClose = () => {
-    console.log('关闭')
-  }
+  // const onClose = () => {
+  //   console.log('关闭')
+  // }
+
+  // 翻译项样式
+  const itemClassName = `
+    w-full
+    px-3
+    py-2
+    text-xs
+    font-bold
+    cursor-pointer
+    whitespace-nowrap
+    border-2
+    border-transparent
+    text-dark-50
+  `
 
   return (
     <>
-      <div className='header'>
-        <div className='translate-box'>
+      <div className='flex px-3 py-2 box-border'>
+        <div className='flex border-b border-light-900'>
           {
             tabs.map(item => (
               <div
-                className={`item ${active === item.key ? 'active' : ''}`}
+                className={`
+                  ${itemClassName}
+                  ${
+                    active === item.key ?
+                    '!border-blue-600 !text-blue-600' : ''
+                  }
+                `}
                 key={item.key}
                 onClick={() => onChangeLang(item.key)}
               >
@@ -69,13 +100,22 @@ function IndexPopup() {
           }
         </div>
 
-        <div
-          className='close'
+        {/* <div
+          className='text-xs cursor-pointer ml-2'
           onClick={onClose}
-        />
+        >
+          x
+        </div> */}
       </div>
 
-      <div className='footer'>
+      <div className={`
+        w-full
+        px-3
+        py-2
+        bg-gray-100
+        border-t-1
+        border-gray-400
+      `}>
         South 翻译
       </div>
     </>

@@ -7,6 +7,7 @@
     "parens",
     "paren",
     "camelcase",
-    "commitlint"
+    "commitlint",
+    "tailwindcss"
   ]
 }

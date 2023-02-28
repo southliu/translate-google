@@ -10,6 +10,10 @@
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "package": "plasmo package"
   },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "plasmo": "0.65.2",
     "react": "18.2.0",
@@ -32,11 +36,14 @@
     "husky": "^8.0.3",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
+    "tailwindcss": "^3.2.7",
     "typescript": "4.9.4"
   },
+  "homepage": "https://github.com/southliu/translate-google",
   "manifest": {
-    "host_permissions": [
-      "https://*/*"
+    "homepage_url": "https://github.com/southliu/translate-google",
+    "permissions": [
+      "tabs"
     ]
   }
 }
