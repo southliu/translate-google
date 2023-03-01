@@ -43,6 +43,7 @@
   "manifest": {
     "homepage_url": "https://github.com/southliu/translate-google",
     "permissions": [
+      "scripting",
       "tabs"
     ]
   }
